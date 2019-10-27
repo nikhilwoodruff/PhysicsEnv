@@ -3,21 +3,27 @@ from gym import spaces
 import numpy as np
 
 class CustomEnv(gym.Env):
-  """Custom Environment that follows gym interface"""
-  metadata = {'render.modes': ['human']}
 
+  metadata = {'render.modes': ['human']}
+  N_DISCRETE_ACTIONS = 2
   def __init__(self):
+    # called at the beginning to set up the env
     super(CustomEnv, self).__init__()
-    # Define action and observation space
-    # They must be gym.spaces objects
-    # Example when using discrete actions:
-    self.action_space = spaces.Discrete(N_DISCRETE_ACTIONS)
-    # Example for using image as input:
-    self.observation_space = spaces.Box(low=0, high=255, shape=(HEIGHT, WIDTH, N_CHANNELS), dtype=np.uint8)
+    # action space is two variables:
+    # agent can provide left/right acceleration 
+    # and turning velocity
+    self.action_space = spaces.Box(low=-1, high=1, shape=(2))
+    # observation space atm is two variables:
+    # agent can see the x, y displacement of the 
+    # ball relative to the racket
+    self.observation_space = spaces.Box(low=-1, high=1, shape=(2), dtype=np.uint8)
 
   def step(self, action):
     # Execute one time step within the environment
+    pass
   def reset(self):
     # Reset the state of the environment to an initial state
+    pass
   def render(self, mode='human', close=False):
     # Render the environment to the screen
+    pass
